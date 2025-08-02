@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Search Results</title>
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: arial, sans-serif;
+            background-color: #fff;
+            color: #202124;
+        }
+
+        /* Header with search bar */
+        .header {
+            background-color: #fff;
+            border-bottom: 1px solid #dadce0;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo-small {
+            margin-right: 30px;
+        }
+
+        .logo-small h1 {
+            font-size: 30px;
+            font-weight: 400;
+            font-family: 'Google Sans', Arial, sans-serif;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-small span:nth-child(1) { color: #4285f4; }
+        .logo-small span:nth-child(2) { color: #ea4335; }
+        .logo-small span:nth-child(3) { color: #fbbc05; }
+        .logo-small span:nth-child(4) { color: #4285f4; }
+        .logo-small span:nth-child(5) { color: #34a853; }
+        .logo-small span:nth-child(6) { color: #ea4335; }
+
+        .search-container {
+            flex: 1;
+            max-width: 600px;
+        }
+
+        .search-box-header {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            height: 44px;
+            border: 1px solid #dfe1e5;
+            border-radius: 24px;
+            padding: 0 14px;
+            box-shadow: 0 2px 5px 1px rgba(64,60,67,.16);
+        }
+
+        .search-box-header:hover {
+            box-shadow: 0 2px 8px 1px rgba(64,60,67,.24);
+        }
+
+        .search-icon-header {
+            color: #9aa0a6;
+            height: 20px;
+            width: 20px;
+            margin-right: 13px;
+        }
+
+        .search-input-header {
+            flex: 1;
+            border: none;
+            outline: none;
+            font-size: 16px;
+            background-color: transparent;
+        }
+
+        /* Main content area */
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            padding: 0 20px;
+        }
+
+        /* Results section */
+        .results-section {
+            flex: 1;
+            max-width: 652px;
+            padding: 20px 0;
+        }
+
+        .results-stats {
+            color: #70757a;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+
+        .result-item {
+            margin-bottom: 30px;
+        }
+
+        .result-url {
+            color: #202124;
+            font-size: 14px;
+            line-height: 1.3;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+        }
+
+        .result-url .favicon {
+            width: 18px;
+            height: 18px;
+            margin-right: 12px;
+            border-radius: 50%;
+            background-color: #f1f3f4;
+        }
+
+        .result-title {
+            color: #1a0dab;
+            font-size: 20px;
+            line-height: 1.3;
+            margin-bottom: 4px;
+            text-decoration: none;
+            font-weight: normal;
+        }
+
+        .result-title:hover {
+            text-decoration: underline;
+        }
+
+        .result-title:visited {
+            color: #681da8;
+        }
+
+        .result-snippet {
+            color: #4d5156;
+            font-size: 14px;
+            line-height: 1.58;
+            max-width: 600px;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            margin-left: 40px;
+            width: 300px;
+            padding: 20px 0;
+        }
+
+        .knowledge-panel {
+            background-color: #fff;
+            border: 1px solid #dadce0;
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        /* Status and activity sections */
+        .status-container {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #4285f4;
+        }
+
+        .status-title {
+            font-weight: bold;
+            color: #1a73e8;
+            margin-bottom: 5px;
+        }
+
+        .status-text {
+            color: #5f6368;
+            font-size: 14px;
+        }
+
+        .activity-log {
+            background-color: #1e1e1e;
+            color: #00ff00;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            max-height: 200px;
+            overflow-y: auto;
+            margin: 20px 0;
+        }
+
+        .log-entry {
+            margin: 2px 0;
+        }
+
+        .timestamp {
+            color: #888;
+        }
+
+        .loading {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .spinner {
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid #4285f4;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            color: #70757a;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .main-content {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                margin-left: 0;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with search bar -->
+    <div class="header">
+        <div class="header-container">
+            <div class="logo-small">
+                <h1>
+                    <span>G</span><span>o</span><span>o</span><span>g</span><span>l</span><span>e</span>
+                </h1>
+            </div>
+            
+            <div class="search-container">
+                <form id="searchForm">
+                    <div class="search-box-header">
+                        <span class="search-icon-header">
+                            <svg focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+                            </svg>
+                        </span>
+                        <input type="text" class="search-input-header" id="searchInput" autocomplete="off" placeholder="Search Google">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main content -->
+    <div class="main-content">
+        <!-- Results section -->
+        <div class="results-section">
+            <div class="results-stats" id="resultsStats" style="display: none;">
+                About <span id="resultCount">0</span> results for "<span id="searchQuery"></span>"
+            </div>
+
+            <!-- Loading indicator -->
+            <div class="loading" id="loading" style="display: none;">
+                <div class="spinner"></div>
+                <p>Searching with Puppeteer...</p>
+            </div>
+
+            <!-- Status container -->
+            <div class="status-container" id="statusContainer" style="display: none;">
+                <div class="status-title">Puppeteer Activity:</div>
+                <div class="status-text" id="statusText">Ready to search...</div>
+            </div>
+
+            <!-- Activity log -->
+            <div class="activity-log" id="activityLog" style="display: none;">
+                <div class="log-entry">
+                    <span class="timestamp">[Ready]</span> Puppeteer search engine ready
+                </div>
+            </div>
+
+            <!-- Search results -->
+            <div id="searchResults"></div>
+
+            <!-- No results message -->
+            <div class="no-results" id="noResults" style="display: none;">
+                <h3>No results found</h3>
+                <p>Try searching for something else</p>
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="knowledge-panel" style="display: none;" id="knowledgePanel">
+                <h3>About this search</h3>
+                <p>Powered by Puppeteer web scraping technology</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io();
+        const searchForm = document.getElementById('searchForm');
+        const searchInput = document.getElementById('searchInput');
+        const loading = document.getElementById('loading');
+        const statusContainer = document.getElementById('statusContainer');
+        const statusText = document.getElementById('statusText');
+        const activityLog = document.getElementById('activityLog');
+        const searchResults = document.getElementById('searchResults');
+        const resultsStats = document.getElementById('resultsStats');
+        const resultCount = document.getElementById('resultCount');
+        const searchQuery = document.getElementById('searchQuery');
+        const noResults = document.getElementById('noResults');
+
+        let isSearching = false;
+
+        // Get query from URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const initialQuery = urlParams.get('q');
+        if (initialQuery) {
+            searchInput.value = initialQuery;
+            
+            // Check if we have stored results from the main page
+            const storedResults = sessionStorage.getItem('searchResults');
+            if (storedResults) {
+                const data = JSON.parse(storedResults);
+                displayResults(data);
+                // Clear stored results after using them
+                sessionStorage.removeItem('searchResults');
+            } else {
+                // If no stored results, perform a new search
+                performSearch(initialQuery);
+            }
+        }
+
+        searchForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            if (isSearching) return;
+            
+            const query = searchInput.value.trim();
+            if (!query) return;
+
+            // Update URL
+            window.history.pushState({}, '', `?q=${encodeURIComponent(query)}`);
+            
+            performSearch(query);
+        });
+
+        async function performSearch(query) {
+            isSearching = true;
+            loading.style.display = 'block';
+            statusContainer.style.display = 'block';
+            activityLog.style.display = 'block';
+            searchResults.innerHTML = '';
+            resultsStats.style.display = 'none';
+            noResults.style.display = 'none';
+
+            addLogEntry('Search initiated', query);
+
+            try {
+                const response = await fetch('/api/search', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ query })
+                });
+
+                const data = await response.json();
+                displayResults(data);
+                addLogEntry('Search completed', `Found ${data.results.length} results`);
+            } catch (error) {
+                addLogEntry('Error', error.message);
+                noResults.style.display = 'block';
+            } finally {
+                loading.style.display = 'none';
+                isSearching = false;
+            }
+        }
+
+        socket.on('searchStatus', (data) => {
+            statusText.textContent = data.status;
+            addLogEntry('Puppeteer', data.status);
+        });
+
+        function addLogEntry(type, message) {
+            const timestamp = new Date().toLocaleTimeString();
+            const logEntry = document.createElement('div');
+            logEntry.className = 'log-entry';
+            logEntry.innerHTML = `<span class="timestamp">[${timestamp}]</span> <strong>${type}:</strong> ${message}`;
+            activityLog.appendChild(logEntry);
+            activityLog.scrollTop = activityLog.scrollHeight;
+        }
+
+        function displayResults(data) {
+            if (data.results && data.results.length > 0) {
+                searchQuery.textContent = data.query;
+                resultCount.textContent = data.count.toLocaleString();
+                resultsStats.style.display = 'block';
+                
+                const resultsHTML = data.results.map(result => {
+                    const domain = new URL(result.url).hostname;
+                    return `
+                        <div class="result-item">
+                            <div class="result-url">
+                                <div class="favicon"></div>
+                                ${domain}
+                            </div>
+                            <a href="${result.url}" class="result-title" target="_blank">${result.title}</a>
+                            <div class="result-snippet">
+                                Click to visit this page from your search results.
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+                
+                searchResults.innerHTML = resultsHTML;
+            } else {
+                noResults.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>
