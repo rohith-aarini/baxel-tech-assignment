@@ -7,18 +7,36 @@ This repository contains three progressive Node.js projects demonstrating escala
 2. MEDIUM PROJECT - Advanced Puppeteer Google search with bot detection avoidance  
 3. HARD PROJECT - Full-stack Google search clone with seamless user flow and real-time automation
 
+GETTING STARTED
+===============
+Clone the repository:
+```bash
+git clone https://github.com/rohithpadmanabhuni/baxel-tech-assignment.git
+cd baxel-tech-assignment
+```
+
 SYSTEM REQUIREMENTS
 ==================
-- Node.js (version 14 or higher)
+- Node.js (version 14 or higher) - [Download and install from nodejs.org](https://nodejs.org/en/download/)
 - npm (comes with Node.js)
 - Chrome/Chromium browser (for Puppeteer)
 - Internet connection (for Google searches)
+
+### Installing Node.js
+1. Visit [https://nodejs.org/en/download/](https://nodejs.org/en/download/)
+2. Download the LTS version for your operating system
+3. Run the installer and follow the setup wizard
+4. Verify installation by opening a terminal and running:
+   ```bash
+   node --version
+   npm --version
+   ```
 
 QUICK START - ALL PROJECTS
 ==========================
 1. Open Command Prompt or Terminal
 2. Navigate to the main project directory:
-   cd "C:\Users\other\Documents\Rohith\Projects\Baxel Tech"
+   cd baxel-tech-assignment
 
 EASY PROJECT SETUP (Port 3000)
 ==============================

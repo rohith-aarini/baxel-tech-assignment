@@ -3,6 +3,14 @@
 ## Description
 A simple Node.js application using Express that provides a GET endpoint with a name query parameter. This project demonstrates basic API development with parameter validation and JSON responses.
 
+## Getting Started
+
+### Clone the Repository
+```bash
+git clone https://github.com/rohithpadmanabhuni/baxel-tech-assignment.git
+cd baxel-tech-assignment/easy-project
+```
+
 ## Features
 - Single GET endpoint at root path (`/`)
 - Accepts `name` query parameter
@@ -17,19 +25,15 @@ A simple Node.js application using Express that provides a GET endpoint with a n
 - **Error Handling**: 400 status for missing parameters
 
 ## Setup Instructions
-1. Navigate to the easy-project directory:
-   ```bash
-   cd easy-project
-   ```
-2. Install dependencies:
+1. Install dependencies:
    ```bash
    npm install
    ```
-3. Start the server:
+2. Start the server:
    ```bash
    npm start
    ```
-4. For development with auto-restart:
+3. For development with auto-restart:
    ```bash
    npm run dev
    ```

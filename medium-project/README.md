@@ -3,6 +3,14 @@
 ## Description
 A sophisticated Node.js application that combines basic API functionality with advanced Puppeteer-powered Google search capabilities. Features enhanced bot detection avoidance, multiple selector strategies, and optimized result processing using modern JavaScript techniques.
 
+## Getting Started
+
+### Clone the Repository
+```bash
+git clone https://github.com/rohithpadmanabhuni/baxel-tech-assignment.git
+cd baxel-tech-assignment/medium-project
+```
+
 ## Features
 - **Dual Functionality**: Hello API + Advanced Google Search
 - **Enhanced Bot Detection Avoidance**: Multiple stealth techniques
@@ -21,19 +29,15 @@ A sophisticated Node.js application that combines basic API functionality with a
 - **Bot Avoidance**: Navigator manipulation, user agent spoofing
 
 ## Setup Instructions
-1. Navigate to the medium-project directory:
-   ```bash
-   cd medium-project
-   ```
-2. Install dependencies (includes Puppeteer browser download):
+1. Install dependencies (includes Puppeteer browser download):
    ```bash
    npm install
    ```
-3. Start the server:
+2. Start the server:
    ```bash
    npm start
    ```
-4. For development with auto-restart:
+3. For development with auto-restart:
    ```bash
    npm run dev
    ```

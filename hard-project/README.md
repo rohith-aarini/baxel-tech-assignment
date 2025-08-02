@@ -3,6 +3,14 @@
 ## Description
 A sophisticated full-stack web application that provides a complete Google search experience with seamless user flow: search interface → live Puppeteer automation → professional results page. Features authentic Google design, real-time WebSocket communication, and advanced browser automation with enhanced bot detection avoidance.
 
+## Getting Started
+
+### Clone the Repository
+```bash
+git clone https://github.com/rohithpadmanabhuni/baxel-tech-assignment.git
+cd baxel-tech-assignment/hard-project
+```
+
 ## Complete User Experience Flow
 1. **Search Page**: Users enter queries on a pixel-perfect Google homepage
 2. **Live Automation**: Watch Puppeteer browser automation in real-time with activity logs
@@ -39,23 +47,19 @@ hard-project/
 ```
 
 ## Setup Instructions
-1. Navigate to the hard-project directory:
-   ```bash
-   cd hard-project
-   ```
-2. Install dependencies (includes Puppeteer and Socket.IO):
+1. Install dependencies (includes Puppeteer and Socket.IO):
    ```bash
    npm install
    ```
-3. Start the server:
+2. Start the server:
    ```bash
    npm start
    ```
-4. For development with auto-restart:
+3. For development with auto-restart:
    ```bash
    npm run dev
    ```
-5. Open your browser to http://localhost:3002
+4. Open your browser to http://localhost:3002
 
 ## API Documentation
 
