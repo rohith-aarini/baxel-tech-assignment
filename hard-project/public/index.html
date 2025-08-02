@@ -147,6 +147,27 @@
             max-width: 584px;
         }
 
+        /* Smooth transition styles */
+        .main-content {
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+
+        .main-content.searching {
+            opacity: 0.7;
+            transform: scale(0.95);
+        }
+
+        .activity-header, .status-container, .activity-log {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+        }
+
+        .activity-header.show, .status-container.show, .activity-log.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         .spinner {
             border: 2px solid #f3f3f3;
             border-top: 2px solid #4285f4;
@@ -256,7 +277,7 @@
             </div>
             <div class="buttons-container">
                 <button type="submit" class="search-button">Google Search</button>
-                <button type="button" class="search-button">I'm Feeling Lucky</button>
+                <button type="button" class="search-button" disabled>I'm Feeling Lucky</button>
             </div>
         </form>
         <div class="lang-container">
@@ -316,12 +337,24 @@
 
             isSearching = true;
             
-            // Hide the main search interface and show activity
-            document.querySelector('.main-content').style.display = 'none';
-            document.getElementById('activityHeader').style.display = 'block';
-            loading.style.display = 'block';
-            statusContainer.style.display = 'block';
-            activityLog.style.display = 'block';
+            // Add searching class for smooth transition
+            const mainContent = document.querySelector('.main-content');
+            mainContent.classList.add('searching');
+            
+            // Show activity elements with smooth transitions
+            setTimeout(() => {
+                document.getElementById('activityHeader').style.display = 'block';
+                loading.style.display = 'block';
+                statusContainer.style.display = 'block';
+                activityLog.style.display = 'block';
+                
+                // Add show classes for animations
+                setTimeout(() => {
+                    document.getElementById('activityHeader').classList.add('show');
+                    statusContainer.classList.add('show');
+                    activityLog.classList.add('show');
+                }, 50);
+            }, 300);
 
             addLogEntry('Search initiated', query);
 
@@ -340,25 +373,38 @@
                 // Store results in sessionStorage for the results page
                 sessionStorage.setItem('searchResults', JSON.stringify(data));
                 
-                // Show redirect message
-                document.getElementById('statusText').textContent = 'Redirecting to results page...';
-                addLogEntry('System', 'Redirecting to results page...');
-                
-                // Redirect to results page after a short delay to show completion
+                // Smooth transition to results page
                 setTimeout(() => {
-                    window.location.href = `/search?q=${encodeURIComponent(query)}`;
-                }, 1500);
+                    // Fade out current content
+                    document.body.style.transition = 'opacity 0.3s ease-out';
+                    document.body.style.opacity = '0';
+                    
+                    setTimeout(() => {
+                        window.location.href = `/search?q=${encodeURIComponent(query)}`;
+                    }, 300);
+                }, 1000);
                 
             } catch (error) {
                 addLogEntry('Error', error.message);
                 alert('Search failed: ' + error.message);
                 
-                // Reset the interface on error
-                document.querySelector('.main-content').style.display = 'flex';
-                loading.style.display = 'none';
-                statusContainer.style.display = 'none';
-                activityLog.style.display = 'none';
-                isSearching = false;
+                // Reset the interface on error with smooth transition
+                const mainContent = document.querySelector('.main-content');
+                mainContent.classList.remove('searching');
+                
+                setTimeout(() => {
+                    loading.style.display = 'none';
+                    statusContainer.style.display = 'none';
+                    activityLog.style.display = 'none';
+                    document.getElementById('activityHeader').style.display = 'none';
+                    
+                    // Remove show classes
+                    document.getElementById('activityHeader').classList.remove('show');
+                    statusContainer.classList.remove('show');
+                    activityLog.classList.remove('show');
+                    
+                    isSearching = false;
+                }, 300);
             }
         });
 

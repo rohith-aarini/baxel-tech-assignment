@@ -89,11 +89,11 @@ HARD PROJECT SETUP (Port 3002)
    - Use header search bar for additional searches
 
 Complete User Experience:
-- Pixel-perfect Google homepage with authentic fonts and styling
+- Minimal Google homepage appearance
 - Seamless flow: Search → Live Automation → Results
 - Real-time WebSocket communication showing Puppeteer progress
 - Visual browser automation (non-headless) you can watch
-- Professional search results page with Google-style layout
+- Search results page with Google-style minimal layout
 - Session management for smooth page transitions
 - Responsive design for mobile and desktop
 

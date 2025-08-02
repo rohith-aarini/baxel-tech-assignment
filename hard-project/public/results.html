@@ -16,6 +16,12 @@
             font-family: arial, sans-serif;
             background-color: #fff;
             color: #202124;
+            opacity: 0;
+            transition: opacity 0.5s ease-in;
+        }
+
+        body.loaded {
+            opacity: 1;
         }
 
         /* Header with search bar */
@@ -340,6 +346,11 @@
         const noResults = document.getElementById('noResults');
 
         let isSearching = false;
+
+        // Fade in the page on load
+        window.addEventListener('load', () => {
+            document.body.classList.add('loaded');
+        });
 
         // Get query from URL parameters
         const urlParams = new URLSearchParams(window.location.search);

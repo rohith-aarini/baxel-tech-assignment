@@ -53,7 +53,7 @@ app.post('/api/search', async (req, res) => {
         
         const browser = await puppeteer.launch({ 
             headless: false,
-            slowMo: 100,
+            slowMo: 50,
             args: [
                 '--no-sandbox', 
                 '--disable-setuid-sandbox',
