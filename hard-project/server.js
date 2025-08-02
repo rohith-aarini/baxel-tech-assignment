@@ -1,3 +1,8 @@
+// This is a Node.js application using Express and Puppeteer to perform Google searches and return results using multiple selector strategies to reduce bot detection.
+// The application has two endpoints: one for greeting a user and another for performing a search query
+// Note: This scraping is for demonstration purposes only and should comply with Google's terms of service.
+//       For production use, consider using official APIs or services that allow scraping.
+
 const express = require('express');
 const puppeteer = require('puppeteer');
 const http = require('http');

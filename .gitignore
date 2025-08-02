@@ -24,12 +24,6 @@ Thumbs.db
 Desktop.ini
 $RECYCLE.BIN/
 
-# IDE files
-.vscode/
-.idea/
-*.swp
-*~
-
 # Logs
 logs/
 *.log
